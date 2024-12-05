@@ -1,17 +1,15 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-import Home from './Home';
-import Login from './Components/Login';
-import Register from './Components/Register';
-import AllMovies from './Components/AllMovies';
-import AddMovie from './Components/AddMovie';
-import MyFavourite from './Components/MyFavourite';
-import Error from './Components/Error';
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Home from "./Home";
+import Login from "./Components/Login";
+import Register from "./Components/Register";
+import AllMovies from "./Components/AllMovies";
+import AddMovie from "./Components/AddMovie";
+import MyFavourite from "./Components/MyFavourite";
+import Error from "./Components/Error";
+import AuthProvider from "./Components/Provider/AuthProvider";
 
 const router = createBrowserRouter([
   {
@@ -20,33 +18,34 @@ const router = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <Login></Login>
+    element: <Login></Login>,
   },
   {
     path: "/register",
-    element: <Register></Register>
+    element: <Register></Register>,
   },
   {
     path: "/allmovies",
-    element: <AllMovies></AllMovies>
+    element: <AllMovies></AllMovies>,
   },
   {
     path: "/addmovie",
-    element: <AddMovie></AddMovie>
+    element: <AddMovie></AddMovie>,
   },
   {
     path: "/myfavourite",
-    element: <MyFavourite></MyFavourite>
+    element: <MyFavourite></MyFavourite>,
   },
   {
     path: "*",
-    element: <Error></Error>
-  }
+    element: <Error></Error>,
+  },
 ]);
 
-
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById("root")).render(
   <StrictMode>
-  <RouterProvider router={router} />
-  </StrictMode>,
-)
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  </StrictMode>
+);
