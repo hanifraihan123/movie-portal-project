@@ -5,14 +5,17 @@ import Navbar from "./Components/Navbar"
 import Statistics from "./Components/Statistics"
 import Featured from "./Components/Featured."
 import Latest from "./Components/Latest"
+import { useLoaderData } from "react-router-dom"
 
 function Home() {
+
+  const movies = useLoaderData();
 
   return (
     <>
      <Navbar></Navbar>
      <Banner></Banner>
-     <Featured></Featured>
+     <Featured key={movies._id} movies={movies}></Featured>
      <Latest></Latest>
      <Statistics></Statistics>
      <Footer></Footer>

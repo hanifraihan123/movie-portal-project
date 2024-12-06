@@ -3,6 +3,9 @@ import Navbar from "./Navbar";
 import { useContext } from "react";
 import { AuthContext } from "./Provider/AuthProvider";
 import Swal from "sweetalert2";
+import { FaGoogle } from "react-icons/fa";
+import toast, { Toaster } from 'react-hot-toast';
+
 
 const Login = () => {
 
@@ -15,28 +18,42 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
 
+    const regex = /^(?=.*[A-Z])(?=.*[a-z]).{6,}$/;
+
+    if(!regex.test(password)){
+      toast.error("Password should be at least one uppercase, one lowercase, 6 or more character");
+      return;
+    }
+
     userLogin(email,password)
     .then(result=>{
-      console.log(result.user)
+     if(!result.user){
+      toast.error('Invalid Email or Password')
+      return
+     }
+     else{
       Swal.fire({
         title: 'Success !',
-        text: 'User Created Successfully',
+        text: 'User Logged in Successfully',
         icon: 'success',
         confirmButtonText: 'Ok'
       })
       navigate('/')
+     }
+      
     })
     .catch(error=>{
-      console.log(error.message)
+      toast.error(error.message)
     })
   }
+
   const handleGoogleLogIn = () => {
     googleLogIn()
     .then(result=> {
       console.log(result.user)
       Swal.fire({
         title: 'Success !',
-        text: 'User Created Successfully',
+        text: 'User Logged in Successfully',
         icon: 'success',
         confirmButtonText: 'Ok'
       })
@@ -44,7 +61,7 @@ const Login = () => {
       
     })
     .catch(error=> {
-      console.log(error.message)
+      toast.error(error.message)
     })
   }
 
@@ -70,10 +87,11 @@ const Login = () => {
         </div>
         <div className="form-control mt-2 space-y-2">
           <button className="btn btn-primary">Login</button>
-          <button onClick={handleGoogleLogIn} className="btn btn-warning">Login With Google</button>
+          <button onClick={handleGoogleLogIn} className="btn btn-warning"><FaGoogle />Login With Google</button>
         </div>
             <p className="text-center py-2">Create an account ? Please <Link to='/register'><span className="text-red-500">Register</span></Link> </p>
       </form>
+      <Toaster />
         </div>
     );
 };

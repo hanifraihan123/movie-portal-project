@@ -3,11 +3,13 @@ import Navbar from "./Navbar";
 import { useContext } from "react";
 import { AuthContext } from "./Provider/AuthProvider";
 import Swal from "sweetalert2";
+import { FaGoogle } from "react-icons/fa";
+import toast, { Toaster } from 'react-hot-toast';
 
 
 const Register = () => {
 
-  const {createUser,googleLogIn} = useContext(AuthContext);
+  const {createUser,googleLogIn,loading} = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleRegister = e => {
@@ -15,23 +17,35 @@ const Register = () => {
     const form = e.target;
     const name = form.name.value;
     const email = form.email.value;
+    const photo = form.photo.value;
     const password = form.password.value;
 
-    const newUser = {name,email}
+    const regex = /^(?=.*[A-Z])(?=.*[a-z]).{6,}$/;
+
+    if(!regex.test(password)){
+      toast.error("Password should be at least one uppercase, one lowercase, 6 or more character");
+      return;
+    }
+
+    const newUser = {name,email,photo}
 
     createUser(email,password)
     .then(result=>{
-      console.log(result.user)
-      Swal.fire({
-        title: 'Success !',
-        text: 'User Created Successfully',
-        icon: 'success',
-        confirmButtonText: 'Ok'
-      })
-      navigate('/')
+      if(!result.user){
+        toast.error('Invalid Name,Email or Password')
+      }
+      else{
+        Swal.fire({
+          title: 'Success !',
+          text: 'User Created Successfully',
+          icon: 'success',
+          confirmButtonText: 'Ok'
+        })
+        navigate('/')
+      }
     })
     .catch(error=>{
-      console.log('error', error.message)
+      toast.error(error.message)
     })
   }
 
@@ -49,7 +63,7 @@ const Register = () => {
       
     })
     .catch(error=>{
-      console.log(error.messagee)
+      toast.error(error.messagee)
     })
   }
 
@@ -72,16 +86,23 @@ const Register = () => {
         </div>
         <div className="form-control">
           <label className="label">
+            <span className="label-text">Photo URL</span>
+          </label>
+          <input type="text" name="photo" placeholder="Enter photo URL" className="input input-bordered" required />
+        </div>
+        <div className="form-control">
+          <label className="label">
             <span className="label-text">Password</span>
           </label>
           <input type="password" name="password" placeholder="password" className="input input-bordered" required />
         </div>
         <div className="form-control mt-2 space-y-2">
           <button className="btn btn-primary">Register</button>
-          <button onClick={handleGoogleLogIn} className="btn btn-warning">Login With Google</button>
+          <button onClick={handleGoogleLogIn} className="btn btn-warning"><FaGoogle />Login With Google</button>
         </div>
         <p className="text-center py-2">Already have a account ? Please <Link to='/login'><span className="text-red-500">Login</span></Link> </p>
       </form>
+      <Toaster />
         </div>
     );
 };
