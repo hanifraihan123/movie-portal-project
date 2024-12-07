@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import { useLoaderData, useNavigate } from 'react-router-dom';
+import { Link, useLoaderData, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const MovieDetails = () => {
@@ -73,6 +73,9 @@ const MovieDetails = () => {
     <div className="card-actions justify-center">
       <button onClick={()=>handleDelete(_id)} className="btn btn-primary">Delete Movie</button>
       <button onClick={handleFavourite} className="btn btn-primary">Add To Favourite</button>
+    </div>
+    <div className='flex justify-center'>
+      <Link to="/allmovies"><button className='btn btn-info'>See All Movies</button></Link>
     </div>
   </div>
 </div>

@@ -6,6 +6,7 @@ import Statistics from "./Components/Statistics"
 import Featured from "./Components/Featured."
 import Latest from "./Components/Latest"
 import { useLoaderData } from "react-router-dom"
+import ExtraSection from "./Components/ExtraSection"
 
 function Home() {
 
@@ -18,6 +19,7 @@ function Home() {
      <Featured key={movies._id} movies={movies}></Featured>
      <Latest></Latest>
      <Statistics></Statistics>
+     <ExtraSection></ExtraSection>
      <Footer></Footer>
     </div>
   )

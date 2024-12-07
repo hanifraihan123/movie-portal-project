@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 
 const AllMovieCard = ({movie}) => {
@@ -20,7 +21,7 @@ const AllMovieCard = ({movie}) => {
           <p>Release: {release}</p>
           <p>Summary: {summary}</p>
           <div className="card-actions justify-center">
-            <button className="btn btn-primary">See Details</button>
+            <Link to={`/moviedetails/${_id}`}><button className="btn btn-primary">See Details</button></Link>
           </div>
         </div>
       </div>
