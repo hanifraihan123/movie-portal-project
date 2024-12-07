@@ -12,14 +12,14 @@ function Home() {
   const movies = useLoaderData();
 
   return (
-    <>
+    <div className="bg-gray-300">
      <Navbar></Navbar>
      <Banner></Banner>
      <Featured key={movies._id} movies={movies}></Featured>
      <Latest></Latest>
      <Statistics></Statistics>
      <Footer></Footer>
-    </>
+    </div>
   )
 }
 

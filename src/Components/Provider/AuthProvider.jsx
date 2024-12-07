@@ -37,7 +37,7 @@ const AuthProvider = ({children}) => {
             setLoading(false)
         })
         return ()=>{
-            unSubscribe()
+           return unSubscribe()
         }
     },[])
 
@@ -48,6 +48,7 @@ const AuthProvider = ({children}) => {
     const userInfo = {
         user,
         loading,
+        setLoading,
         createUser,
         userLogin,
         googleLogIn,

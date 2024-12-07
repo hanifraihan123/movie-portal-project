@@ -12,7 +12,6 @@ const MovieDetails = () => {
     const navigate = useNavigate();
 
     const handleDelete = _id => {
-            console.log(_id)
             Swal.fire({
                 title: "Are you sure?",
                 text: "You won't be able to revert this!",
@@ -28,7 +27,6 @@ const MovieDetails = () => {
                 })
                 .then(res=>res.json())
                 .then(data=>{
-                    console.log(data)
                     if(data.deletedCount > 0){
                         Swal.fire({
                             title: "Deleted!",
@@ -40,13 +38,26 @@ const MovieDetails = () => {
                 })
                 }
               });
-    }
+           }
+           const handleFavourite = email => {
+              fetch('http://localhost:5000/favouritemovies',{
+                method: 'POST',
+                headers: {
+                  'content-type': 'application/json'
+                },
+                body: JSON.stringify()
+              })
+              .then(res=>res.json())
+              .then(data=>{
+                console.log(data)
+              })
+           }
 
     return (
-        <>
+        <div className='bg-cyan-200'>
         <Navbar></Navbar>
        <div className='my-6'>
-       <div className="card glass mx-auto w-1/3">
+       <div className="card bg-pink-200 mx-auto w-1/3">
   <figure>
     <img className='h-48 w-full object-cover rounded-xl'
       src={poster}
@@ -61,13 +72,13 @@ const MovieDetails = () => {
     <p>{summary}</p>
     <div className="card-actions justify-center">
       <button onClick={()=>handleDelete(_id)} className="btn btn-primary">Delete Movie</button>
-      <button className="btn btn-primary">Add To Favourite</button>
+      <button onClick={handleFavourite} className="btn btn-primary">Add To Favourite</button>
     </div>
   </div>
 </div>
 </div>
 <Footer></Footer>
-</>
+</div>
     );
 };
 

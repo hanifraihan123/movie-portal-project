@@ -9,7 +9,7 @@ import toast, { Toaster } from 'react-hot-toast';
 
 const Register = () => {
 
-  const {createUser,googleLogIn,loading} = useContext(AuthContext);
+  const {createUser,googleLogIn,loading,setLoading} = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleRegister = e => {
@@ -20,7 +20,7 @@ const Register = () => {
     const photo = form.photo.value;
     const password = form.password.value;
 
-    const regex = /^(?=.*[A-Z])(?=.*[a-z]).{6,}$/;
+    const regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{6,}$/;
 
     if(!regex.test(password)){
       toast.error("Password should be at least one uppercase, one lowercase, 6 or more character");
@@ -31,6 +31,7 @@ const Register = () => {
 
     createUser(email,password)
     .then(result=>{
+      setLoading(false)
       if(!result.user){
         toast.error('Invalid Name,Email or Password')
       }

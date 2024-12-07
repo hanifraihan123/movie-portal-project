@@ -2,9 +2,14 @@ import Swal from "sweetalert2";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 import { Rating } from 'react-simple-star-rating'
+import { useContext } from "react";
+import { AuthContext } from "./Provider/AuthProvider";
+import toast,{ Toaster } from "react-hot-toast";
 
 
 const AddMovie = () => {
+
+  const {user} =  useContext(AuthContext)
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -16,8 +21,21 @@ const AddMovie = () => {
         const release = form.release.value;
         const rating = form.rating.value;
         const summary = form.summary.value;
+        const email = user.email;
+        if(!poster == <a></a>){
+          return toast.error("Please provide a valid link")
+        }
+        if(title.length < 2){
+          return toast.error('At Least 2 Character Title Required')
+        }
+        if(duration < 60){
+          return toast.error('At least 60 minutes duration required')
+        }
+        if(summary.length < 10){
+          return toast.error('At Least 10 Character Summary Required')
+        }
 
-        const newMovie = {poster,title,genre,duration,release,rating,summary}
+        const newMovie = {email,poster,title,genre,duration,release,rating,summary}
         console.log(newMovie)
         
         fetch('http://localhost:5000/movies',{
@@ -29,7 +47,6 @@ const AddMovie = () => {
         })
         .then(res=>res.json())
         .then(data=>{
-          console.log(data)
           if(data.insertedId){
             Swal.fire({
               title: 'Success !',
@@ -64,7 +81,7 @@ const AddMovie = () => {
           <label className="label">
             <span className="label-text">Genre</span>
           </label>
-              <select name="genre" class="datefield year">
+              <select name="genre" class="datefield year" required>
                   <option value="">Genre</option>
                     <option value="Action">Action</option>
                     <option value="Funny">Funny</option>
@@ -85,7 +102,7 @@ const AddMovie = () => {
           <label className="label">
             <span className="label-text">Release Year</span>
           </label>
-         <select name="release" class="datefield year">
+         <select name="release" class="datefield year" required>
             <option value="">Year</option>
               <option value="2024">2024</option>
               <option value="2023">2023</option>
@@ -110,6 +127,10 @@ const AddMovie = () => {
         </div>
       </form>
       <Footer></Footer>
+      <Toaster
+  position="top-center"
+  reverseOrder={false}
+/>
         </div>
     );
 };
