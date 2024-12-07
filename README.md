@@ -1,8 +1,10 @@
-# React + Vite
+Website Name: Movie Portal
+Live Site Link: 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Key Features:
+1/You can add a movie information by add movie form submission.
+2/By pressing See Details Button, You can see movie details information.
+3/You can add a movie in your favourite list.
+4/You can delete a movie info by clicking delete movie also from database.
+5/All Movie section has all movie info which included in database.
+6/Home page contains a dynamic data from database.
