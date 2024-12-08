@@ -39,7 +39,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/myfavourite",
-    element: <MyFavourite></MyFavourite>,
+    element: <PrivateRoute><MyFavourite></MyFavourite></PrivateRoute>,
   },
   {
     path: "contactus",
