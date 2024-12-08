@@ -9,7 +9,7 @@ import toast, { Toaster } from 'react-hot-toast';
 
 const Register = () => {
 
-  const {createUser,googleLogIn,loading,setLoading} = useContext(AuthContext);
+  const {createUser,googleLogIn,updateUserProfile,setLoading} = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleRegister = e => {
@@ -27,8 +27,6 @@ const Register = () => {
       return;
     }
 
-    const newUser = {name,email,photo}
-
     createUser(email,password)
     .then(result=>{
       setLoading(false)
@@ -36,13 +34,16 @@ const Register = () => {
         toast.error('Invalid Name,Email or Password')
       }
       else{
-        Swal.fire({
-          title: 'Success !',
-          text: 'User Created Successfully',
-          icon: 'success',
-          confirmButtonText: 'Ok'
+        updateUserProfile({displayName:name, photoURL:photo})
+        .then(()=>{
+          Swal.fire({
+            title: 'Success !',
+            text: 'User Created Successfully',
+            icon: 'success',
+            confirmButtonText: 'Ok'
+          })
+          navigate('/')
         })
-        navigate('/')
       }
     })
     .catch(error=>{

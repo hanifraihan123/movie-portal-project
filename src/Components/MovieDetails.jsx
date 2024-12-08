@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import { Link, useLoaderData, useNavigate } from 'react-router-dom';
@@ -6,13 +6,20 @@ import Swal from 'sweetalert2';
 import { FaRegHeart } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
 import { FaBorderAll } from "react-icons/fa";
+import { AuthContext } from './Provider/AuthProvider';
 
 const MovieDetails = () => {
 
     const movie = useLoaderData();
+
+    const {user} = useContext(AuthContext)
+
+    const email = user.email;
     
     const {_id,poster,duration,genre,rating,release,summary,title} = movie;
     const navigate = useNavigate();
+
+    const favouriteMovie = {email,poster,duration,genre,rating,release,summary,title}
 
     const handleDelete = _id => {
             Swal.fire({
@@ -42,17 +49,23 @@ const MovieDetails = () => {
                 }
               });
            }
-           const handleFavourite = email => {
+           const handleFavourite = () => {
               fetch('http://localhost:5000/favouritemovies',{
                 method: 'POST',
                 headers: {
                   'content-type': 'application/json'
                 },
-                body: JSON.stringify()
+                body: JSON.stringify(favouriteMovie)
               })
               .then(res=>res.json())
               .then(data=>{
-                console.log(data)
+                if(data.insertedId){
+                  Swal.fire({
+                    title: "Success",
+                    text: "Movie added in favourite list",
+                    icon: "success"
+                  });
+                }
               })
            }
 
