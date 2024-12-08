@@ -31,6 +31,9 @@ const AddMovie = () => {
         if(duration < 60){
           return toast.error('At least 60 minutes duration required')
         }
+        if(rating == 0){
+          return toast.error('At Least 1 & maximum 10 rating required')
+        }
         if(summary.length < 10){
           return toast.error('At Least 10 Character Summary Required')
         }

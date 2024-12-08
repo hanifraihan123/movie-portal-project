@@ -23,7 +23,8 @@ const Navbar = () => {
       }}
     >
       <div className="navbar-start">
-        <div>
+        <div className="flex gap-2">
+          <img className="h-8 w-8 rounded-full" src="https://i.ibb.co.com/8K2SHKC/images-1.jpg" alt="" />
           <h3 className="font-bold text-xl">Movie Portal</h3>
         </div>
       </div>
@@ -41,11 +42,14 @@ const Navbar = () => {
           <NavLink to="/myfavourite">
             <li>My Favorites</li>
           </NavLink>
+          <NavLink to="/contactus">
+            <li>Contact Us</li>
+          </NavLink>
         </ul>
       </div>
       <div className="navbar-end space-x-2">
         {
-          user? <><h3>{user?.displayName}</h3><img className="w-10 h-10 rounded-full" src={user.photoURL} alt="" /> <button onClick={handleLogout} className="btn btn-secondary">Log Out</button></> : <>
+          user? <div className="flex gap-2 tooltip tooltip-left items-center" data-tip={user?.displayName}><img className="w-10 h-10 rounded-full" src={user.photoURL} alt="" /> <button onClick={handleLogout} className="btn btn-secondary">Log Out</button></div> : <>
           <Link to="/login">
           <button className="btn btn-secondary text-white">Login</button>
         </Link>

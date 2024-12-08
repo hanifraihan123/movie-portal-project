@@ -12,6 +12,7 @@ import Error from "./Components/Error";
 import AuthProvider from "./Components/Provider/AuthProvider";
 import PrivateRoute from "./Components/routes/PrivateRoute";
 import MovieDetails from "./Components/MovieDetails";
+import ContactUs from "./Components/ContactUs";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
   {
     path: "/myfavourite",
     element: <MyFavourite></MyFavourite>,
+  },
+  {
+    path: "contactus",
+    element: <ContactUs></ContactUs>
   },
   {
     path: "/moviedetails/:id",

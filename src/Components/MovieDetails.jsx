@@ -3,6 +3,9 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import { Link, useLoaderData, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { FaRegHeart } from "react-icons/fa";
+import { MdDeleteForever } from "react-icons/md";
+import { FaBorderAll } from "react-icons/fa";
 
 const MovieDetails = () => {
 
@@ -71,11 +74,11 @@ const MovieDetails = () => {
     <p>{rating}</p>
     <p>{summary}</p>
     <div className="card-actions justify-center">
-      <button onClick={()=>handleDelete(_id)} className="btn btn-primary">Delete Movie</button>
-      <button onClick={handleFavourite} className="btn btn-primary">Add To Favourite</button>
+      <button onClick={()=>handleDelete(_id)} className="btn btn-primary"><MdDeleteForever /> Delete Movie</button>
+      <button onClick={handleFavourite} className="btn btn-primary"><FaRegHeart /> Add To Favourite</button>
     </div>
     <div className='flex justify-center'>
-      <Link to="/allmovies"><button className='btn btn-info'>See All Movies</button></Link>
+      <Link to="/allmovies"><button className='btn btn-info'><FaBorderAll /> See All Movies</button></Link>
     </div>
   </div>
 </div>

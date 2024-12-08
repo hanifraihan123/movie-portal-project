@@ -51,15 +51,15 @@ const Login = () => {
   const handleGoogleLogIn = () => {
     googleLogIn()
     .then(result=> {
-      console.log(result.user)
-      Swal.fire({
-        title: 'Success !',
-        text: 'User Logged in Successfully',
-        icon: 'success',
-        confirmButtonText: 'Ok'
-      })
-      navigate('/')
-      
+      if(result.user){
+        Swal.fire({
+          title: 'Success !',
+          text: 'User Logged in Successfully',
+          icon: 'success',
+          confirmButtonText: 'Ok'
+        })
+        navigate('/')
+      }
     })
     .catch(error=> {
       toast.error(error.message)
