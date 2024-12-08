@@ -80,11 +80,11 @@ const MovieDetails = () => {
   </figure>
   <div className="card-body">
     <h2 className="card-title">{title}</h2>
-    <p>{genre}</p>
-    <p>{release}</p>
-    <p>{duration}</p>
-    <p>{rating}</p>
-    <p>{summary}</p>
+    <p>Genre: {genre}</p>
+    <p>Release: {release}</p>
+    <p>Duration: {duration}</p>
+    <p>Rating: {rating}</p>
+    <p>Summary: {summary}</p>
     <div className="card-actions justify-center">
       <button onClick={()=>handleDelete(_id)} className="btn btn-primary"><MdDeleteForever /> Delete Movie</button>
       <button onClick={handleFavourite} className="btn btn-primary"><FaRegHeart /> Add To Favourite</button>
