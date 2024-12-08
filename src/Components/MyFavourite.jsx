@@ -22,7 +22,7 @@ const MyFavourite = () => {
        <Navbar></Navbar>
        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mx-6 my-4">
       {
-        movies.map(movie=><FavouriteMovie key={movie._id} movie={movie}></FavouriteMovie>)
+        movies.map(movie=><FavouriteMovie key={movie._id} movie={movie} movies={movies} setMovies={setMovies}></FavouriteMovie>)
       }
        </div>
        <Footer></Footer>

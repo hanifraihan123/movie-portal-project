@@ -1,7 +1,7 @@
 import Swal from "sweetalert2";
 
 
-const FavouriteMovie = ({movie}) => {
+const FavouriteMovie = ({movie,movies,setMovies}) => {
 
     const {_id,poster,duration,genre,rating,release,summary,title} = movie;
 
@@ -21,13 +21,14 @@ const FavouriteMovie = ({movie}) => {
             })
             .then(res=>res.json())
             .then(data=>{
-                setMovies(data)
                 if(data.deletedCount > 0){
                     Swal.fire({
                         title: "Deleted!",
                         text: "Your movie has been deleted.",
                         icon: "success"
                       });
+                      const remaining = movies.filter(mov=>mov._id !== _id)
+                      setMovies(remaining)
                 }
             })
             }
