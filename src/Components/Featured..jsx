@@ -1,5 +1,6 @@
+import { Link } from "react-router-dom";
 import MovieCard from "./MovieCard";
-
+import { FaBorderAll } from "react-icons/fa";
 
 const Featured = ({movies}) => {
 
@@ -14,6 +15,13 @@ const Featured = ({movies}) => {
                 newMovies.map(movie=><MovieCard key={movie._id} movie={movie}></MovieCard>)
             }
          </div>
+         <div className="flex justify-center pb-6">
+          <Link to="/allmovies">
+            <button className="btn btn-info">
+              <FaBorderAll /> See All Movies
+            </button>
+          </Link>
+        </div>
         </div>
     );
 };

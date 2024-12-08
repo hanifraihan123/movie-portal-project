@@ -1,7 +1,7 @@
 
 const Statistics = () => {
     return (
-        <div className="stats shadow flex items-center justify-center my-10 bg-lime-100 px-10">
+        <div className="stats shadow flex lg:flex-row flex-col items-center justify-center my-10 bg-lime-100 px-10">
   <div className="stat text-center">
     <div className="stat-figure text-secondary">
       <svg

@@ -5,7 +5,6 @@ import { Link, useLoaderData, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { FaRegHeart } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
-import { FaBorderAll } from "react-icons/fa";
 import { AuthContext } from './Provider/AuthProvider';
 
 const MovieDetails = () => {
@@ -89,9 +88,6 @@ const MovieDetails = () => {
     <div className="card-actions justify-center">
       <button onClick={()=>handleDelete(_id)} className="btn btn-primary"><MdDeleteForever /> Delete Movie</button>
       <button onClick={handleFavourite} className="btn btn-primary"><FaRegHeart /> Add To Favourite</button>
-    </div>
-    <div className='flex justify-center'>
-      <Link to="/allmovies"><button className='btn btn-info'><FaBorderAll /> See All Movies</button></Link>
     </div>
   </div>
 </div>

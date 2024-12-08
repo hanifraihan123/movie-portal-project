@@ -1,7 +1,6 @@
 import Swal from "sweetalert2";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
-import { Rating } from 'react-simple-star-rating'
 import { useContext } from "react";
 import { AuthContext } from "./Provider/AuthProvider";
 import toast,{ Toaster } from "react-hot-toast";
@@ -39,7 +38,6 @@ const AddMovie = () => {
         }
 
         const newMovie = {email,poster,title,genre,duration,release,rating,summary}
-        console.log(newMovie)
         
         fetch('http://localhost:5000/movies',{
           method: 'POST',

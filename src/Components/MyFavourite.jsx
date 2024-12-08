@@ -1,24 +1,31 @@
-import Footer from "./Footer";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "./Provider/AuthProvider";
+import FavouriteMovie from "./FavouriteMovie";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 const MyFavourite = () => {
+
+  const {user} = useContext(AuthContext);
+  const [movies,setMovies] = useState([]);
+
+  useEffect(()=>{
+    fetch(`http://localhost:5000/favouritemovies/${user?.email}`)
+    .then((res)=>res.json())
+    .then((data)=>{
+      setMovies(data)
+    })
+  },[])
+
   return (
-    <div>
-      <Navbar></Navbar>
-      <h3 className="my-4 font-bold text-2xl text-center">My Favoureite Movies Here</h3>
-      <div className="card card-compact justify-center my-8 mx-auto bg-base-100 w-96 shadow-xl">
-        <figure>
-          <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp" alt="Shoes"/>
-        </figure>
-        <div className="card-body">
-          <h2 className="card-title">Shoes!</h2>
-          <p>If a dog chews shoes whose shoes does he choose?</p>
-          <div className="card-actions justify-end">
-            <button className="btn btn-primary">Delete Favourite</button>
-          </div>
-        </div>
-      </div>
-      <Footer></Footer>
+    <div className="bg-emerald-200">  
+       <Navbar></Navbar>
+       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mx-6 my-4">
+      {
+        movies.map(movie=><FavouriteMovie key={movie._id} movie={movie}></FavouriteMovie>)
+      }
+       </div>
+       <Footer></Footer>
     </div>
   );
 };
