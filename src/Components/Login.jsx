@@ -70,7 +70,7 @@ const Login = () => {
     return (
         <div>
             <Navbar></Navbar>
-            <form onSubmit={handleLogin} className="card-body w-1/2 mx-auto bg-teal-200 my-4">
+            <form onSubmit={handleLogin} className="card-body lg:w-1/2 w-full mx-auto bg-teal-200 my-4">
             <h1 className="text-5xl font-bold text-center">Login now!</h1>
         <div className="form-control">
           <label className="label">

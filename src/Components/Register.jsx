@@ -72,7 +72,7 @@ const Register = () => {
     return (
         <div>
             <Navbar></Navbar>
-            <form onSubmit={handleRegister} className="card-body w-1/2 mx-auto my-2 bg-sky-300">
+            <form onSubmit={handleRegister} className="card-body lg:w-1/2 w-full mx-auto my-2 bg-sky-300">
             <h1 className="text-5xl font-bold text-center">Register now!</h1>
         <div className="form-control">
           <label className="label">
