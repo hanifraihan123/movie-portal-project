@@ -6,32 +6,32 @@ const FavouriteMovie = ({movie}) => {
     const {_id,poster,duration,genre,rating,release,summary,title} = movie;
 
     const handleDelete = _id => {
-        console.log(_id)
-        // Swal.fire({
-        //     title: "Are you sure?",
-        //     text: "You won't be able to revert this!",
-        //     icon: "warning",
-        //     showCancelButton: true,
-        //     confirmButtonColor: "#3085d6",
-        //     cancelButtonColor: "#d33",
-        //     confirmButtonText: "Yes, delete it!"
-        //   }).then((result) => {
-        //     if (result.isConfirmed) {
-        //     fetch(`http://localhost:5000/favouritemovies/${_id}`,{
-        //         method: 'DELETE'
-        //     })
-        //     .then(res=>res.json())
-        //     .then(data=>{
-        //         if(data.deletedCount > 0){
-        //             Swal.fire({
-        //                 title: "Deleted!",
-        //                 text: "Your movie has been deleted.",
-        //                 icon: "success"
-        //               });
-        //         }
-        //     })
-        //     }
-        //   });
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+            fetch(`http://localhost:5000/favouritemovies/${_id}`,{
+                method: 'DELETE'
+            })
+            .then(res=>res.json())
+            .then(data=>{
+                setMovies(data)
+                if(data.deletedCount > 0){
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your movie has been deleted.",
+                        icon: "success"
+                      });
+                }
+            })
+            }
+          });
     }
 
     return (
