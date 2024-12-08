@@ -1,5 +1,5 @@
 import Swal from "sweetalert2";
-
+import { MdDeleteForever } from "react-icons/md";
 
 const FavouriteMovie = ({movie,movies,setMovies}) => {
 
@@ -16,7 +16,7 @@ const FavouriteMovie = ({movie,movies,setMovies}) => {
             confirmButtonText: "Yes, delete it!"
           }).then((result) => {
             if (result.isConfirmed) {
-            fetch(`http://localhost:5000/favouritemovies/${_id}`,{
+            fetch(`https://movie-portal-server-drab.vercel.app/favouritemovies/${_id}`,{
                 method: 'DELETE'
             })
             .then(res=>res.json())
@@ -48,7 +48,7 @@ const FavouriteMovie = ({movie,movies,setMovies}) => {
           <p>{release}</p>
           <p>{summary}</p>
           <div className="card-actions justify-end">
-            <button onClick={()=>handleDelete(_id)} className="btn btn-primary">Delete Favourite</button>
+            <button onClick={()=>handleDelete(_id)} className="btn btn-primary"><MdDeleteForever /> Delete Favourite</button>
           </div>
         </div>
       </div>

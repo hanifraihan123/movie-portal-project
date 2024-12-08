@@ -31,7 +31,7 @@ const MovieDetails = () => {
                 confirmButtonText: "Yes, delete it!"
               }).then((result) => {
                 if (result.isConfirmed) {
-                fetch(`http://localhost:5000/movies/${_id}`,{
+                fetch(`https://movie-portal-server-drab.vercel.app/movies/${_id}`,{
                     method: 'DELETE'
                 })
                 .then(res=>res.json())
@@ -49,7 +49,7 @@ const MovieDetails = () => {
               });
            }
            const handleFavourite = () => {
-              fetch('http://localhost:5000/favouritemovies',{
+              fetch('https://movie-portal-server-drab.vercel.app/favouritemovies',{
                 method: 'POST',
                 headers: {
                   'content-type': 'application/json'
@@ -72,7 +72,7 @@ const MovieDetails = () => {
         <div className='bg-cyan-200'>
         <Navbar></Navbar>
        <div className='my-6'>
-       <div className="card bg-pink-200 mx-auto w-1/3">
+       <div className="card bg-pink-200 mx-auto w-1/2 lg:w-1/3">
   <figure>
     <img className='h-48 w-full object-cover rounded-xl'
       src={poster}

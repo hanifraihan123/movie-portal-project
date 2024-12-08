@@ -39,7 +39,7 @@ const AddMovie = () => {
 
         const newMovie = {email,poster,title,genre,duration,release,rating,summary}
         
-        fetch('http://localhost:5000/movies',{
+        fetch('https://movie-portal-server-drab.vercel.app/movies',{
           method: 'POST',
           headers: {
             'content-type': 'application/json'
