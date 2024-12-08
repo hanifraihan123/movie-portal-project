@@ -5,6 +5,7 @@ import { AuthContext } from "./Provider/AuthProvider";
 import Swal from "sweetalert2";
 import { FaGoogle } from "react-icons/fa";
 import toast, { Toaster } from 'react-hot-toast';
+import Footer from "./Footer";
 
 
 const Login = () => {
@@ -97,6 +98,7 @@ const Login = () => {
       position="top-center"
       reverseOrder={false}
       />
+      <Footer></Footer>
         </div>
     );
 };

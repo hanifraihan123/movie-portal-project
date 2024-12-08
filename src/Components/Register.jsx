@@ -5,6 +5,7 @@ import { AuthContext } from "./Provider/AuthProvider";
 import Swal from "sweetalert2";
 import { FaGoogle } from "react-icons/fa";
 import toast, { Toaster } from 'react-hot-toast';
+import Footer from "./Footer";
 
 
 const Register = () => {
@@ -105,6 +106,7 @@ const Register = () => {
         <p className="text-center py-2">Already have a account ? Please <Link to='/login'><span className="text-red-500">Login</span></Link> </p>
       </form>
       <Toaster />
+      <Footer></Footer>
         </div>
     );
 };
