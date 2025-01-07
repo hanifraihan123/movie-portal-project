@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { FaRegHeart } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
 import { AuthContext } from './Provider/AuthProvider';
+import { Helmet } from 'react-helmet';
 
 const MovieDetails = () => {
 
@@ -13,7 +14,7 @@ const MovieDetails = () => {
 
     const {user} = useContext(AuthContext)
 
-    const email = user.email;
+    const email = user?.email;
     
     const {_id,poster,duration,genre,rating,release,summary,title} = movie;
     const navigate = useNavigate();
@@ -31,7 +32,7 @@ const MovieDetails = () => {
                 confirmButtonText: "Yes, delete it!"
               }).then((result) => {
                 if (result.isConfirmed) {
-                fetch(`https://movie-portal-server-drab.vercel.app/movies/${_id}`,{
+                fetch(`http://localhost:3000/movies/${_id}`,{
                     method: 'DELETE'
                 })
                 .then(res=>res.json())
@@ -49,7 +50,7 @@ const MovieDetails = () => {
               });
            }
            const handleFavourite = () => {
-              fetch('https://movie-portal-server-drab.vercel.app/favouritemovies',{
+              fetch('http://localhost:3000/favouritemovies',{
                 method: 'POST',
                 headers: {
                   'content-type': 'application/json'
@@ -64,12 +65,16 @@ const MovieDetails = () => {
                     text: "Movie added in favourite list",
                     icon: "success"
                   });
+                  navigate('/myfavourite')
                 }
               })
            }
 
     return (
         <div className='bg-cyan-200'>
+       <Helmet>
+        <title>Movie Portal || Details</title>
+      </Helmet>
         <Navbar></Navbar>
        <div className='my-6'>
        <div className="card bg-pink-200 mx-auto w-1/2 lg:w-1/3">
@@ -82,7 +87,7 @@ const MovieDetails = () => {
     <h2 className="card-title">{title}</h2>
     <p>Genre: {genre}</p>
     <p>Release: {release}</p>
-    <p>Duration: {duration}</p>
+    <p>Duration: {duration} min</p>
     <p>Rating: {rating}</p>
     <p>Summary: {summary}</p>
     <div className="card-actions justify-center">

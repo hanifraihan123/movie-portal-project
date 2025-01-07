@@ -13,12 +13,14 @@ import AuthProvider from "./Components/Provider/AuthProvider";
 import PrivateRoute from "./Components/routes/PrivateRoute";
 import MovieDetails from "./Components/MovieDetails";
 import ContactUs from "./Components/ContactUs";
+import { Toaster } from "react-hot-toast";
+import { HelmetProvider } from "react-helmet-async";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home></Home>,
-    loader: ()=> fetch('https://movie-portal-server-drab.vercel.app/movies')
+    loader: ()=> fetch('http://localhost:3000/movies')
   },
   {
     path: "/login",
@@ -31,7 +33,7 @@ const router = createBrowserRouter([
   {
     path: "/allmovies",
     element: <AllMovies></AllMovies>,
-    loader: ()=> fetch('https://movie-portal-server-drab.vercel.app/movies')
+    loader: ()=> fetch('http://localhost:3000/movies')
   },
   {
     path: "/addmovie",
@@ -47,8 +49,8 @@ const router = createBrowserRouter([
   },
   {
     path: "/moviedetails/:id",
-    element: <PrivateRoute><MovieDetails></MovieDetails></PrivateRoute>,
-    loader: ({params})=> fetch(`https://movie-portal-server-drab.vercel.app/movies/${params.id}`)
+    element:<MovieDetails></MovieDetails>,
+    loader: ({params})=> fetch(`http://localhost:3000/movies/${params.id}`)
   },
   {
     path: "*",
@@ -58,8 +60,11 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
+    <HelmetProvider>
     <AuthProvider>
       <RouterProvider router={router} />
+      <Toaster />
     </AuthProvider>
+    </HelmetProvider>
   </StrictMode>
 );

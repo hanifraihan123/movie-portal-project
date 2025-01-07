@@ -2,10 +2,11 @@ import { Link, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import { useContext } from "react";
 import { AuthContext } from "./Provider/AuthProvider";
-import Swal from "sweetalert2";
 import { FaGoogle } from "react-icons/fa";
 import toast, { Toaster } from 'react-hot-toast';
 import Footer from "./Footer";
+import logo from '../assets/login.json';
+import Lottie from "lottie-react";
 
 
 const Login = () => {
@@ -34,12 +35,7 @@ const Login = () => {
       return
      }
      else{
-      Swal.fire({
-        title: 'Success !',
-        text: 'User Logged in Successfully',
-        icon: 'success',
-        confirmButtonText: 'Ok'
-      })
+      toast.success('User Login Successfully')
       navigate('/')
      }
       
@@ -54,12 +50,7 @@ const Login = () => {
     googleLogIn()
     .then(result=> {
       if(result.user){
-        Swal.fire({
-          title: 'Success !',
-          text: 'User Logged in Successfully',
-          icon: 'success',
-          confirmButtonText: 'Ok'
-        })
+        toast.success('User Login Successfully')
         navigate('/')
       }
     })
@@ -71,7 +62,11 @@ const Login = () => {
     return (
         <div>
             <Navbar></Navbar>
-            <form onSubmit={handleLogin} className="card-body lg:w-1/2 w-full mx-auto bg-teal-200 my-4">
+            <div className="lg:flex flex-col lg:flex-row gap-4 bg-blue-100">
+              <div className="flex-1 m-4">
+                  <Lottie animationData={logo}></Lottie>
+              </div>
+              <form onSubmit={handleLogin} className="card-body bg-teal-200 m-4 flex-1">
             <h1 className="text-5xl font-bold text-center">Login now!</h1>
         <div className="form-control">
           <label className="label">
@@ -94,6 +89,7 @@ const Login = () => {
         </div>
             <p className="text-center py-2">Create an account ? Please <Link to='/register'><span className="text-red-500">Register</span></Link> </p>
       </form>
+            </div>
       <Toaster
       position="top-center"
       reverseOrder={false}

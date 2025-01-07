@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "./Provider/AuthProvider";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const { user,userLogout } = useContext(AuthContext);
@@ -8,7 +9,7 @@ const Navbar = () => {
   const handleLogout = () => {
       userLogout()
       .then(()=>{
-        console.log('User signout successfully')
+        toast.success('Logout successfully')
       })
       .catch(error=>{
         console.log('Error', error)
@@ -17,11 +18,7 @@ const Navbar = () => {
 
   return (
     <div
-      className="navbar"
-      style={{
-        backgroundImage: `url("https://i.ibb.co.com/VTZGp5D/cool-background.png")`,
-      }}
-    >
+      className="navbar px-6 fixed z-10 bg-gradient-to-r from-red-300 to-blue-500">
       <div className="navbar-start">
         <div className="flex gap-2">
           <img className="h-8 w-8 rounded-full" src="https://i.ibb.co.com/8K2SHKC/images-1.jpg" alt="" />
@@ -47,18 +44,20 @@ const Navbar = () => {
       <ul
         tabIndex={0}
         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow space-y-2">
-        <NavLink to="/">
+          <NavLink to="/">
             <li>Home</li>
           </NavLink>
           <NavLink to="/allmovies">
             <li>All Movies</li>
           </NavLink>
-          <NavLink to="/addmovie">
+          {
+            user && <><NavLink to="/addmovie">
             <li>Add Movie</li>
           </NavLink>
           <NavLink to="/myfavourite">
             <li>My Favorites</li>
-          </NavLink>
+          </NavLink></>
+          }
           <NavLink to="/contactus">
             <li>Contact Us</li>
           </NavLink>
@@ -67,18 +66,20 @@ const Navbar = () => {
 
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal space-x-4 px-1">
-          <NavLink to="/">
+        <NavLink to="/">
             <li>Home</li>
           </NavLink>
           <NavLink to="/allmovies">
             <li>All Movies</li>
           </NavLink>
-          <NavLink to="/addmovie">
+          {
+            user && <><NavLink to="/addmovie">
             <li>Add Movie</li>
           </NavLink>
           <NavLink to="/myfavourite">
             <li>My Favorites</li>
-          </NavLink>
+          </NavLink></>
+          }
           <NavLink to="/contactus">
             <li>Contact Us</li>
           </NavLink>

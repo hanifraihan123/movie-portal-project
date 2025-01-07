@@ -2,10 +2,11 @@ import { Link, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import { useContext } from "react";
 import { AuthContext } from "./Provider/AuthProvider";
-import Swal from "sweetalert2";
 import { FaGoogle } from "react-icons/fa";
 import toast, { Toaster } from 'react-hot-toast';
 import Footer from "./Footer";
+import logo from '../assets/register.json';
+import Lottie from "lottie-react";
 
 
 const Register = () => {
@@ -37,12 +38,7 @@ const Register = () => {
       else{
         updateUserProfile({displayName:name, photoURL:photo})
         .then(()=>{
-          Swal.fire({
-            title: 'Success !',
-            text: 'User Created Successfully',
-            icon: 'success',
-            confirmButtonText: 'Ok'
-          })
+          toast.success('User Login Successfully')
           navigate('/')
         })
       }
@@ -55,15 +51,10 @@ const Register = () => {
   const handleGoogleLogIn = () => {
     googleLogIn()
     .then(result=>{
-      console.log(result.user)
-      Swal.fire({
-        title: 'Success !',
-        text: 'User Created Successfully',
-        icon: 'success',
-        confirmButtonText: 'Ok'
-      })
-      navigate('/')
-      
+      if(result.user){
+        toast.success('User Login Successfully')
+        navigate('/')
+      }
     })
     .catch(error=>{
       toast.error(error.messagee)
@@ -73,7 +64,11 @@ const Register = () => {
     return (
         <div>
             <Navbar></Navbar>
-            <form onSubmit={handleRegister} className="card-body lg:w-1/2 w-full mx-auto my-2 bg-sky-300">
+           <div className="lg:flex gap-4 bg-orange-100">
+            <div className="flex-1 m-2">
+              <Lottie animationData={logo}></Lottie>
+            </div>
+            <form onSubmit={handleRegister} className="card-body m-2 flex-1 bg-sky-300">
             <h1 className="text-5xl font-bold text-center">Register now!</h1>
         <div className="form-control">
           <label className="label">
@@ -105,6 +100,7 @@ const Register = () => {
         </div>
         <p className="text-center py-2">Already have a account ? Please <Link to='/login'><span className="text-red-500">Login</span></Link> </p>
       </form>
+           </div>
       <Toaster />
       <Footer></Footer>
         </div>

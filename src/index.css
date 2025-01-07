@@ -4,7 +4,5 @@
 
 .active{
     background-color: aqua;
-    border-radius: 5px;
-    padding: 6px;
     font-weight: 600;
 }

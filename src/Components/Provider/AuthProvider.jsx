@@ -45,10 +45,6 @@ const AuthProvider = ({children}) => {
         }
     },[])
 
-    if(loading){
-        return <div className="flex items-center justify-center"><span className="loading loading-bars loading-lg"></span></div>
-    }
-
     const userInfo = {
         user,
         loading,

@@ -39,7 +39,7 @@ const AddMovie = () => {
 
         const newMovie = {email,poster,title,genre,duration,release,rating,summary}
         
-        fetch('https://movie-portal-server-drab.vercel.app/movies',{
+        fetch('http://localhost:3000/movies',{
           method: 'POST',
           headers: {
             'content-type': 'application/json'
@@ -62,7 +62,7 @@ const AddMovie = () => {
     return (
         <div>
             <Navbar></Navbar>
-            <form onSubmit={handleSubmit} className="card-body w-full">
+            <form onSubmit={handleSubmit} className="card-body w-full pt-20">
         <div className="flex gap-4">
         <div className="form-control w-1/2">
           <label className="label">
@@ -82,7 +82,7 @@ const AddMovie = () => {
           <label className="label">
             <span className="label-text">Genre</span>
           </label>
-              <select name="genre" class="datefield year" required>
+              <select name="genre" class="datefield year select select-bordered" required>
                   <option value="">Genre</option>
                     <option value="Action">Action</option>
                     <option value="Funny">Funny</option>
@@ -103,7 +103,7 @@ const AddMovie = () => {
           <label className="label">
             <span className="label-text">Release Year</span>
           </label>
-         <select name="release" class="datefield year" required>
+         <select name="release" class="datefield year select select-bordered" required>
             <option value="">Year</option>
               <option value="2024">2024</option>
               <option value="2023">2023</option>
