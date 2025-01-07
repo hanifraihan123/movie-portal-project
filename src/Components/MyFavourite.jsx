@@ -12,7 +12,7 @@ const MyFavourite = () => {
   const [movies,setMovies] = useState([]);
 
   useEffect(()=>{
-    fetch(`http://localhost:3000/favouritemovies/${user?.email}`)
+    fetch(`https://movie-portal-server-drab.vercel.app/favouritemovies/${user?.email}`)
     .then((res)=>res.json())
     .then((data)=>{
       setMovies(data)
@@ -30,7 +30,7 @@ const MyFavourite = () => {
               confirmButtonText: "Yes, delete it!"
             }).then((result) => {
               if (result.isConfirmed) {
-              fetch(`http://localhost:3000/favouritemovies/${_id}`,{
+              fetch(`https://movie-portal-server-drab.vercel.app/favouritemovies/${_id}`,{
                   method: 'DELETE'
               })
               .then(res=>res.json())

@@ -32,7 +32,7 @@ const MovieDetails = () => {
                 confirmButtonText: "Yes, delete it!"
               }).then((result) => {
                 if (result.isConfirmed) {
-                fetch(`http://localhost:3000/movies/${_id}`,{
+                fetch(`https://movie-portal-server-drab.vercel.app/movies/${_id}`,{
                     method: 'DELETE'
                 })
                 .then(res=>res.json())
@@ -50,7 +50,7 @@ const MovieDetails = () => {
               });
            }
            const handleFavourite = () => {
-              fetch('http://localhost:3000/favouritemovies',{
+              fetch('https://movie-portal-server-drab.vercel.app/favouritemovies',{
                 method: 'POST',
                 headers: {
                   'content-type': 'application/json'

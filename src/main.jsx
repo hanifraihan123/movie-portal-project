@@ -20,7 +20,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Home></Home>,
-    loader: ()=> fetch('http://localhost:3000/movies')
+    loader: ()=> fetch('https://movie-portal-server-drab.vercel.app/movies')
   },
   {
     path: "/login",
@@ -33,7 +33,7 @@ const router = createBrowserRouter([
   {
     path: "/allmovies",
     element: <AllMovies></AllMovies>,
-    loader: ()=> fetch('http://localhost:3000/movies')
+    loader: ()=> fetch('https://movie-portal-server-drab.vercel.app/movies')
   },
   {
     path: "/addmovie",
@@ -50,7 +50,7 @@ const router = createBrowserRouter([
   {
     path: "/moviedetails/:id",
     element:<MovieDetails></MovieDetails>,
-    loader: ({params})=> fetch(`http://localhost:3000/movies/${params.id}`)
+    loader: ({params})=> fetch(`https://movie-portal-server-drab.vercel.app/movies/${params.id}`)
   },
   {
     path: "*",
