@@ -76,7 +76,7 @@ const MovieDetails = () => {
         <title>Movie Portal || Details</title>
       </Helmet>
         <Navbar></Navbar>
-       <div className='my-6'>
+       <div className='pt-20'>
        <div className="card bg-pink-200 mx-auto w-1/2 lg:w-1/3">
   <figure>
     <img className='h-48 w-full object-cover rounded-xl'
