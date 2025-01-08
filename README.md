@@ -18,7 +18,7 @@
 
 ###
 
-<p align="left">1/You can add a movie information by add movie form submission.<br> 2/By pressing See Details Button, You can see movie details information. <br>3/You can add a movie in your favourite list. <br>4/You can delete a movie info by clicking delete movie also from database. <br>5/All Movie section has all movie info which included in database. 6/Home page contains a dynamic data from database.</p>
+<p align="left">1/You can add a movie information by add movie form submission.<br> 2/By pressing See Details Button, You can see movie details information. <br>3/You can add a movie in your favourite list. <br>4/You can delete a movie info by clicking delete movie also from database. <br>5/All Movie section has all movie info which included in database. <br>6/Home page contains a dynamic data from database.</p>
 
 ###
 
